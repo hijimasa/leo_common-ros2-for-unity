@@ -2,8 +2,8 @@
 Changelog for package leo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.0.2 (2024-04-27)
+------------------
 * IGN_GAZEBO_RESOURCE_PATH -> GZ_SIM_RESOURCE_PATH
 * Contributors: Błażej Sowa
 
