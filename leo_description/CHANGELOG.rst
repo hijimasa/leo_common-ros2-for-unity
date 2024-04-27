@@ -2,8 +2,8 @@
 Changelog for package leo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.2 (2024-04-27)
+------------------
 * Set GZ_SIM_RESOURCE_PATH for Gazebo Harmonic
 * Contributors: Błażej Sowa
 
