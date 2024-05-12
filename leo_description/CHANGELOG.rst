@@ -2,8 +2,8 @@
 Changelog for package leo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.2.3 (2024-05-12)
+------------------
 * Remove imu system plugin from the robot (`#11 <https://github.com/LeoRover/leo_common-ros2/issues/11>`_)
 * Contributors: Jan Hernas
 
