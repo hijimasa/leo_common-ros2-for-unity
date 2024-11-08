@@ -2,8 +2,8 @@
 Changelog for package leo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.4 (2024-11-08)
+------------------
 * Add dummy .sh file for .dsv hook (backport `#14 <https://github.com/LeoRover/leo_common-ros2/issues/14>`_) (`#15 <https://github.com/LeoRover/leo_common-ros2/issues/15>`_)
 * Contributors: Jan Hernas
 
