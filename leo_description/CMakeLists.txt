@@ -5,9 +5,12 @@ find_package(ament_cmake REQUIRED)
 
 install(
   DIRECTORY
+    config
     launch
     models
     urdf
+    ros2_control
+    unity
   DESTINATION share/${PROJECT_NAME}
 )
 

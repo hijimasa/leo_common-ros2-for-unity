@@ -10,6 +10,13 @@
                        imu_translation:='0.0628 -0.0314 -0.0393'
                        mecanum_wheels:=false">
 
+    <physics_material name="wheel">
+      <friction static="1.0" dynamic="1.0"/>
+    </physics_material>
+    <physics_material name="body">
+      <friction static="0.3" dynamic="0.3"/>
+    </physics_material>
+
     <xacro:macro name="rocker_link" params="name">
       <link name="${link_prefix}rocker_${name}_link">
         <inertial>
@@ -29,6 +36,7 @@
           <geometry>
             <mesh filename="package://leo_description/models/Rocker_outline.stl"/>
           </geometry>
+          <physics_material name="body"/>
         </collision>
       </link>
     </xacro:macro>
@@ -51,20 +59,17 @@
         <collision>
           <origin xyz="0 0.04485 0" rpy="${pi/2} 0 0"/>
           <geometry>
-            <cylinder radius="0.057" length="0.07"/>
-          </geometry>
-        </collision>
-        <collision>
-          <origin xyz="0 0.04485 0" rpy="${pi/2} 0 0"/>
-          <geometry>
             <cylinder radius="0.0625" length="0.04"/>
           </geometry>
+          <physics_material name="wheel"/>
         </collision>
+<!--
         <collision>
           <geometry>
             <mesh filename="package://leo_description/models/Wheel_outline.stl"/>
           </geometry>
         </collision>
+-->
       </link>
     </xacro:macro>
 
@@ -93,13 +98,23 @@
           <geometry>
             <mesh filename="package://leo_description/models/Mecanum_wheel_outline.stl"/>
           </geometry>
+          <physics_material name="wheel"/>
         </collision>
       </link>
     </xacro:macro>
 
     <!-- LINKS -->
     <xacro:if value="${footprint_link}">
-      <link name="${link_prefix}base_footprint"/>
+      <link name="${link_prefix}base_footprint">
+      <inertial>
+        <mass value="0.000001"/>
+        <origin xyz="0 0 0"/>
+        <inertia
+          ixx="0.000001" ixy="0.0" ixz="0.0"
+          iyy="0.000001" iyz="0.0"
+          izz="0.000001"/>
+      </inertial>
+      </link>
     </xacro:if>
 
     <link name="${link_prefix}base_link">
@@ -120,6 +135,7 @@
         <geometry>
           <mesh filename="package://leo_description/models/Chassis_outline.stl"/>
         </geometry>
+        <physics_material name="body"/>
       </collision>
     </link>
 
@@ -158,6 +174,7 @@
           <geometry>
             <cylinder radius="0.0055" length="0.056"/>
           </geometry>
+          <physics_material name="body"/>
         </collision>
       </link>
     </xacro:if>
@@ -190,6 +207,7 @@
       <axis xyz="0 1 0"/>
       <limit effort="100.0" lower="-0.24" upper="0.24" velocity="100.0"/>
       <dynamics friction="1.0" damping="0.1"/>
+      <unity_drive_api stiffness="30000" damping="0" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}rocker_R_joint" type="${rockers_joint_type}">
@@ -200,6 +218,7 @@
       <limit effort="100.0" lower="-0.24" upper="0.24" velocity="100.0"/>
       <dynamics friction="1.0" damping="0.1"/> 
       <mimic joint="rocker_L_joint"/>
+      <unity_drive_api stiffness="30000" damping="0" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}wheel_FL_joint" type="continuous">
@@ -214,6 +233,7 @@
       <axis xyz="0 -1 0"/>
       <limit effort="2.0" velocity="6.0"/>
       <dynamics friction="0.3125" damping="0.1"/>
+      <unity_drive_api stiffness="0" damping="30000" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}wheel_RL_joint" type="continuous">
@@ -228,6 +248,7 @@
       <axis xyz="0 -1 0"/>
       <limit effort="2.0" velocity="6.0"/>
       <dynamics friction="0.3125" damping="0.1"/>
+      <unity_drive_api stiffness="0" damping="30000" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}wheel_FR_joint" type="continuous">
@@ -242,6 +263,7 @@
       <axis xyz="0 1 0"/>
       <limit effort="2.0" velocity="6.0"/>
       <dynamics friction="0.3125" damping="0.1"/>
+      <unity_drive_api stiffness="0" damping="30000" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}wheel_RR_joint" type="continuous">
@@ -256,6 +278,7 @@
       <axis xyz="0 1 0"/>
       <limit effort="2.0" velocity="6.0"/>
       <dynamics friction="0.3125" damping="0.1"/> 
+      <unity_drive_api stiffness="0" damping="30000" force_limit="1000000"/>
     </joint>
 
     <xacro:if value="${default_antenna}">
@@ -556,8 +579,9 @@
                rockers_fixed="false"
                link_prefix="${link_prefix}"
                mecanum_wheels="${mecanum_wheels}"/>
-
+    <!--
     <xacro:leo_gazebo robot_ns="${robot_ns}"/>
+    -->
 
     <xacro:if value="${fixed}">
       <link name="world"/>

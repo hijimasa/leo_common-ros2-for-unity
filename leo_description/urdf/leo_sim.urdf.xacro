@@ -7,9 +7,13 @@
   <xacro:arg name="mecanum_wheels" default="false"/>
 
   <xacro:include filename="$(find leo_description)/urdf/macros.xacro"/>
+  <xacro:include filename="$(find leo_description)/ros2_control/leo.ros2_control.xacro"/>
+  <xacro:include filename="$(find leo_description)/unity/leo.unity.xacro"/>
 
   <xacro:leo_sim robot_ns="$(arg robot_ns)"
                  fixed="$(arg fixed)"
                  mecanum_wheels="$(arg mecanum_wheels)"/>
+  <xacro:leo_ros2_control name="leo"/>
+  <xacro:leo_unity prefix=""/>
 
 </robot>

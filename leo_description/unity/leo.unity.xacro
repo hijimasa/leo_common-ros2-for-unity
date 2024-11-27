@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="leo_unity" params="prefix">
+
+    <!-- =============== Isaac Sim =============== -->
+    <unity>
+
+      <sensor name="camera_frame" type="camera">
+        <update_rate>30</update_rate>
+        <horizontal_fov>1.9</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.2</near>
+          <far>300</far>
+        </clip>
+        <distortion>
+          <k1>-0.279817</k1>
+          <k2>0.060321</k2>
+          <k3>0.000487</k3>
+          <p1>0.000310</p1>
+          <p2>0.000000</p2>
+          <center>0.5 0.5</center>
+        </distortion>
+        <cameraName>leo_camera</cameraName>
+        <imageTopicName>camera/image_raw</imageTopicName>
+        <frameName>camera_frame</frameName>
+      </sensor>
+      
+    </unity>
+
+  </xacro:macro>
+    
+</robot>
