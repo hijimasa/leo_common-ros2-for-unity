@@ -207,7 +207,7 @@
       <axis xyz="0 1 0"/>
       <limit effort="100.0" lower="-0.24" upper="0.24" velocity="100.0"/>
       <dynamics friction="1.0" damping="0.1"/>
-      <unity_drive_api stiffness="30000" damping="0" force_limit="1000000"/>
+      <unity_drive_api stiffness="0" damping="1000" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}rocker_R_joint" type="${rockers_joint_type}">
@@ -218,7 +218,7 @@
       <limit effort="100.0" lower="-0.24" upper="0.24" velocity="100.0"/>
       <dynamics friction="1.0" damping="0.1"/> 
       <mimic joint="rocker_L_joint"/>
-      <unity_drive_api stiffness="30000" damping="0" force_limit="1000000"/>
+      <unity_drive_api stiffness="0" damping="1000" force_limit="1000000"/>
     </joint>
 
     <joint name="${joint_prefix}wheel_FL_joint" type="continuous">
